@@ -1,0 +1,14 @@
+# Mayhem target: strictyaml YAML parser / round-trip (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_yaml.py; Atheris
+# instruments the strictyaml library so the run records coverage (edges).
+project: savantenvs/strictyaml
+target: fuzz-load
+
+cmds:
+  - cmd: /mayhem/strictyaml_fuzzer
+    libfuzzer: true
+
+# Seed corpus lives under mayhem/seeds (bootstrap inputs; Mayhem accumulates corpus over time).
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz-load/testsuite

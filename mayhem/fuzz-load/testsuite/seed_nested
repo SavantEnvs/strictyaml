@@ -1,0 +1,6 @@
+name: strictyaml
+nested:
+  key: value
+  list:
+    - x
+    - y
